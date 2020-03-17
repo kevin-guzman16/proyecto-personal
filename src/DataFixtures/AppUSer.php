@@ -27,6 +27,10 @@ class AppUSer extends Fixture
             'nombre' => 'Encebollado'
         ]);
 
+        $r2 = $recetas->findOneBy([
+            'nombre' => 'Paella'
+        ]);
+
         $usuario = new User();
         $usuario->setNombre('Kevin');
         $usuario->setApellidos('Guzmán');
@@ -37,7 +41,18 @@ class AppUSer extends Fixture
         $usuario->addReceta($r);
 
         $manager->persist($usuario);
+        $manager->flush();
 
+        $usuario2 = new User();
+        $usuario2->setNombre('Cecilia');
+        $usuario2->setApellidos('Pazmiño');
+        $usuario2->setEmail('cecilia@gmail.com');
+        $usuario2->setRoles(["ROLE_USER"]);
+        $usuario2->setEdad(49);
+        $usuario2->setPassword($this->encode_password->encodePassword($usuario2, '1234'));
+        $usuario2->addReceta($r2);
+
+        $manager->persist($usuario2);
         $manager->flush();
     }
 }

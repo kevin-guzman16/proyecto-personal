@@ -8,6 +8,7 @@
     <body>
     {% if is_granted("ROLE_USER") %}
         Hola {{ app.user.nombre }}
+        <a href="{{ path('perfil') }}">Mi perfil</a>
         <a href="/logout">Logout</a>
         <a href="{{ path('receta-nueva') }}">Crear receta</a>
     {% endif %}
