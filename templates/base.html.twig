@@ -6,6 +6,11 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+    {% if is_granted("ROLE_USER") %}
+        Hola {{ app.user.nombre }}
+        <a href="/logout">Logout</a>
+        <a href="{{ path('receta-nueva') }}">Crear receta</a>
+    {% endif %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RecetasController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    {% for receta in lista_recetas %}
+<a href="{{ path('receta-detalle', {id: receta.getId}) }}">
+<div class="example-wrapper">
+
+    <h2>{{ receta.getNombre }}</h2>
+    <div><img src="{{ absolute_url(asset('imgs/img_receta/'~receta.getImagenes)) }}"></div>
+    <p>{{ receta.getDescripcion }}</p>
+
+</div>
+</a>
+    {% endfor %}
+
+{% endblock %}
